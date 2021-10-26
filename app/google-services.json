@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "52030653826",
+    "firebase_url": "https://myflat-2d8fa-default-rtdb.firebaseio.com",
+    "project_id": "myflat-2d8fa",
+    "storage_bucket": "myflat-2d8fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52030653826:android:17f6571af409b32173fb9b",
+        "android_client_info": {
+          "package_name": "com.techbros.myflat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52030653826-pgomctdi2s5udsk1uf3j6o6a3i0ds896.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJOQy8tQDgFedSr8Pa21JMUtNZsEPBsHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52030653826-pgomctdi2s5udsk1uf3j6o6a3i0ds896.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
