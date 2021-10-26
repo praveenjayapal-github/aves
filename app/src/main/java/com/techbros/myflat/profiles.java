@@ -53,7 +53,7 @@ public class profiles extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 sendData = new String(response.toString());
-                Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
                 //tv.setText(response.toString());
                 try {
                     JSONArray list = new JSONArray(response.toString());
