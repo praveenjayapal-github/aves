@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,26 +25,32 @@ import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
 public class Expenses extends AppCompatActivity {
 
-
+    Button view;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
+    HashSet<String> monthset = new HashSet<>();
     ArrayList<ExpenseDetails> arrayList = new ArrayList<>();
+    ArrayList<ExpenseDetails> temp = new ArrayList<>();
     private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Expenses&start=1&end=1000";
+    Spinner spin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses);
+        view = findViewById(R.id.btn_view);
         mRequestQueue = Volley.newRequestQueue(this);
-
+        spin = findViewById(R.id.spinner);
         //String Request initialized
         mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                //Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
                 try {
                     JSONArray list = new JSONArray(response.toString());
                     for (int i = 0; i < list.length() - 1; i++) {
@@ -49,7 +58,7 @@ public class Expenses extends AppCompatActivity {
                         expense = list.getJSONObject(i);
                         String index = expense.getString("index");
                         String month = expense.getString("Month");
-                        month=month.substring(0,7);
+                        month=(month.substring(0,4)+month.substring(5,7));
                         String date = expense.getString("Date");
                         String type1 = expense.getString("Type 1");
                         String type2 = expense.getString("Type 2");
@@ -58,8 +67,26 @@ public class Expenses extends AppCompatActivity {
                         String remark = expense.getString("Remark");
                         ExpenseDetails expenseDetails = new ExpenseDetails(index, month, date, type1, type2, amount, paymentType, remark);
                         arrayList.add(expenseDetails);
+                        monthset.add(month);
                     }
-                    //System.out.println("print arraylist :: "+arrayList);
+                    ArrayList<String> monthset1 = new ArrayList<>(monthset);
+                    Collections.sort(monthset1);
+                    monthset1.toArray();
+
+                    // Create the instance of ArrayAdapter
+                    // having the list of courses
+                    ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, monthset1);
+
+                    // set simple layout resource file
+                    // for each item of spinner
+                    ad.setDropDownViewResource(
+                            android.R.layout
+                                    .simple_spinner_dropdown_item);
+
+                    // Set the ArrayAdapter (ad) data on the
+                    // Spinner which binds data to spinner
+                    spin.setAdapter(ad);
+                    System.out.println("print set :: "+monthset);
                     setListView(arrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -74,10 +101,27 @@ public class Expenses extends AppCompatActivity {
         });
 
         mRequestQueue.add(mStringRequest);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String value = spin.getSelectedItem().toString();
+                //Toast.makeText(getApplicationContext(),value, Toast.LENGTH_LONG).show();
+                temp.clear();
+                for(int i=0;i<64;i++){
+                    if(arrayList.get(i).getMonth().equalsIgnoreCase(value)){
+                        System.out.println(arrayList.get(i).getMonth().equalsIgnoreCase(value));
+                    temp.add(arrayList.get(i));
+                    }
+                }
+                setListView(temp);
+                System.out.println(temp);
+            }
+        });
+
     }
     private void setListView(ArrayList<ExpenseDetails> arrayList) {
         ListView expensesListView = findViewById(R.id.list_view);
-        ExpenseAdapter adapter = new ExpenseAdapter(this, this.arrayList);
+        ExpenseAdapter adapter = new ExpenseAdapter(this, arrayList);
         expensesListView.setAdapter(adapter);
 //        carsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
