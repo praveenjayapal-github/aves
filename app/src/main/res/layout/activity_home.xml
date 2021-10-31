@@ -4,158 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_page_bg_lite"
     tools:context=".Home">
 
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:layout_marginEnd="10dp"
-        android:columnCount="2"
-        android:rowCount="3"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
+        <ImageView
+            android:background="@drawable/logo_mini"
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.5"
+            android:background="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageButton
-                    android:id="@+id/btn_profiles"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/icon_profiles"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card2"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <ImageButton
+            android:id="@+id/btn_profiles"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:background="@drawable/btn_resident_with_text"
+            app:layout_constraintEnd_toStartOf="@+id/btn_expenses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/btn_expenses"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/icon_expenses"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        <ImageButton
+            android:id="@+id/btn_expenses"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:background="@drawable/btn_expenses_with_text"
+            app:layout_constraintEnd_toStartOf="@+id/btn_contacts"
+            app:layout_constraintStart_toEndOf="@+id/btn_profiles"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card3"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/btn_expenses1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/icon_expenses"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card4"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/btn_expenses5"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/icon_expenses"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card5"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/btn_expenses56"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/icon_expenses"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card6"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/btn_expenses57"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/icon_expenses"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-    </GridLayout>
+        <ImageButton
+            android:id="@+id/btn_contacts"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:background="@drawable/btn_phn_with_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_expenses"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

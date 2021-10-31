@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFlat">
         <activity
+            android:name=".Expenses"
+            android:exported="true" />
+        <activity
             android:name=".UserDetailsDisplay"
             android:exported="true" />
         <activity
