@@ -7,12 +7,12 @@
         <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23435897435897435" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_profiles.xml" value="0.23435897435897435" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.23435897435897435" />
         <entry key="app/src/main/res/layout/activity_user_details_display.xml" value="0.25" />
         <entry key="app/src/main/res/layout/expenses_list_item.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/list_item.xml" value="0.23435897435897435" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.38519924098671726" />
       </map>
     </option>
   </component>

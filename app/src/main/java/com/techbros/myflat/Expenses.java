@@ -2,13 +2,12 @@ package com.techbros.myflat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -38,11 +36,13 @@ public class Expenses extends AppCompatActivity {
     ArrayList<ExpenseDetails> temp = new ArrayList<>();
     private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Expenses&start=1&end=1000";
     Spinner spin;
-
+    ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses);
+        pb = findViewById(R.id.progressBar);
+        pb.setVisibility(ProgressBar.VISIBLE);
         view = findViewById(R.id.btn_view);
         mRequestQueue = Volley.newRequestQueue(this);
         spin = findViewById(R.id.spinner);
@@ -120,6 +120,7 @@ public class Expenses extends AppCompatActivity {
 
     }
     private void setListView(ArrayList<ExpenseDetails> arrayList) {
+        pb.setVisibility(ProgressBar.INVISIBLE);
         ListView expensesListView = findViewById(R.id.list_view);
         ExpenseAdapter adapter = new ExpenseAdapter(this, arrayList);
         expensesListView.setAdapter(adapter);

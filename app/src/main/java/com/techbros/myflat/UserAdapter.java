@@ -38,6 +38,9 @@ public class UserAdapter extends ArrayAdapter<UserDetails> {
         TextView productTextView = (TextView) listItemView.findViewById(R.id.textView2);
         productTextView.setText(userDetails.getFlatNumber());
 
+        TextView tv = (TextView) listItemView.findViewById(R.id.textView22);
+        tv.setText(userDetails.getName());
+
 
         return listItemView;
     }
