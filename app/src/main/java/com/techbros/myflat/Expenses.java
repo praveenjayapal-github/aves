@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -28,7 +29,7 @@ import java.util.HashSet;
 
 public class Expenses extends AppCompatActivity {
 
-    Button view;
+    ImageButton view;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     HashSet<String> monthset = new HashSet<>();

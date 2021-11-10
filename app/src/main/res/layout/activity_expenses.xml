@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_page_bg"
+    android:background="#35465C"
     tools:context=".Expenses">
 
     <Spinner
@@ -17,13 +17,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:alpha="0.8"
         android:id="@+id/btn_view"
-        android:text="VIEW"
-        android:background="@color/purple_200"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:background="#DE5F5A"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinner"
         app:layout_constraintTop_toTopOf="parent" />

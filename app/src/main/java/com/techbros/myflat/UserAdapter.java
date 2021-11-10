@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -32,15 +33,23 @@ public class UserAdapter extends ArrayAdapter<UserDetails> {
 
         UserDetails userDetails = getItem(position);
 
-        TextView ratingTextView = (TextView) listItemView.findViewById(R.id.textView);
-        ratingTextView.setText(userDetails.getBlock());
+//        TextView ratingTextView = (TextView) listItemView.findViewById(R.id.textView);
+//        ratingTextView.setText(userDetails.getBlock());
 
         TextView productTextView = (TextView) listItemView.findViewById(R.id.textView2);
         productTextView.setText(userDetails.getFlatNumber());
 
         TextView tv = (TextView) listItemView.findViewById(R.id.textView22);
         tv.setText(userDetails.getName());
+        ImageView iv = listItemView.findViewById(R.id.imageView);
+        if(userDetails.getBlock().equalsIgnoreCase("olive"))
+        iv.setImageResource(R.drawable.olive_logo);
 
+        else if(userDetails.getBlock().equalsIgnoreCase("maple"))
+            iv.setImageResource(R.drawable.maple_logo);
+
+        else
+            iv.setImageResource(R.drawable.banyan_logo);
 
         return listItemView;
     }

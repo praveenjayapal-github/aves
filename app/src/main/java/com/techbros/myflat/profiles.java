@@ -38,6 +38,7 @@ import java.util.Collection;
 public class profiles extends AppCompatActivity {
 
     ListView lv;
+    ProgressBar pb;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ArrayList<UserDetails> arrayList = new ArrayList<>();
@@ -46,7 +47,8 @@ public class profiles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
-
+        pb = findViewById(R.id.progressBar);
+        pb.setVisibility(ProgressBar.VISIBLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         mRequestQueue = Volley.newRequestQueue(this);
@@ -93,6 +95,7 @@ public class profiles extends AppCompatActivity {
     }
 
     private void setListView(ArrayList<UserDetails> arrayList) {
+        pb.setVisibility(ProgressBar.INVISIBLE);
         ListView carsListView = findViewById(R.id.list_view);
         UserAdapter adapter = new UserAdapter(this, this.arrayList);
         carsListView.setAdapter(adapter);

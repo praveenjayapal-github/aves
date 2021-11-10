@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/purple_200"
+                android:background="#DE5F5A"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView

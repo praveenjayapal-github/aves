@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_page_bg_lite"
+    android:background="@drawable/bg_main"
     tools:context=".Home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
