@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class Home extends AppCompatActivity {
 
-    private ImageButton btnProfiles,btnExpenses;
+    private ImageButton btnProfiles,btnExpenses,btnPhoneBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,7 @@ public class Home extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
+        btnPhoneBook = findViewById(R.id.btn_contacts);
         btnProfiles = findViewById(R.id.btn_profiles);
         btnExpenses = findViewById(R.id.btn_expenses);
         btnProfiles.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +38,14 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        btnPhoneBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), PhoneBook.class);
+                startActivity(i);
+            }
+        });
+
     }
 
 }
