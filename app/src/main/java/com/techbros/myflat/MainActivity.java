@@ -29,6 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-        }, 2*1000); // wait for 5 seconds
+        }, 1000); // wait for 5 seconds
     }
 }

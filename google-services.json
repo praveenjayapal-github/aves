@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459251275286",
+    "project_id": "dac-aves",
+    "storage_bucket": "dac-aves.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459251275286:android:51a4aa9661897649f2c737",
+        "android_client_info": {
+          "package_name": "com.techbros.myflat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459251275286-siqterbqk7l0cfj7vrfj2b0iq48urjga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6WsbR15rp9Jhzkh2NCP-TPZP3IBs0Ak4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459251275286-siqterbqk7l0cfj7vrfj2b0iq48urjga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

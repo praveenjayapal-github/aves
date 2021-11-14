@@ -37,7 +37,7 @@ import java.util.Collection;
 
 public class profiles extends AppCompatActivity {
 
-    ListView lv;
+    //ListView lv;
     ProgressBar pb;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;

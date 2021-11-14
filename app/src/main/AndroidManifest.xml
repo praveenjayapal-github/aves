@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFlat">
         <activity
+            android:name=".PushNotification"
+            android:exported="false" />
+        <activity
             android:name=".PhoneBook"
             android:exported="false" />
         <activity
@@ -25,9 +28,6 @@
             android:name=".Home"
             android:exported="true" />
         <activity
-            android:name=".SignUp"
-            android:exported="true" />
-        <activity
             android:name=".Login"
             android:exported="true" />
         <activity
@@ -39,6 +39,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:enabled="true"
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

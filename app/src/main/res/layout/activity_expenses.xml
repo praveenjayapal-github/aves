@@ -4,35 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#35465C"
+    android:background="@drawable/final_bg"
     tools:context=".Expenses">
 
     <Spinner
-        android:alpha="0.8"
         android:id="@+id/spinner"
-        android:background="@drawable/dropdown_bg"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.8"
+        android:background="@drawable/dropdown_bg"
         app:layout_constraintEnd_toStartOf="@+id/btn_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:alpha="0.8"
         android:id="@+id/btn_view"
-        android:background="#DE5F5A"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinner"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
         android:dividerHeight="5dp"
         android:outlineSpotShadowColor="@color/purple_200"
