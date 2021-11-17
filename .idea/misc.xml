@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_twotone_person_24.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.18994602682785544" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23435897435897435" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_phone_book.xml" value="0.25" />

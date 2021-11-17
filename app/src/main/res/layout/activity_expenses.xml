@@ -35,6 +35,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="8dp"
         android:dividerHeight="5dp"
         android:outlineSpotShadowColor="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"

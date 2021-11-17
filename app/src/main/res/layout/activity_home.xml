@@ -87,7 +87,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifications panel"
+            android:text="Notifications"
             android:textColor="#ffffff"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,14 +99,17 @@
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="2dp"
             android:alpha="0.8"
-            android:background="#ffffff"
+            android:background="#E3C2AF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.941" />
 
         <ProgressBar
             android:id="@+id/progressBar"
