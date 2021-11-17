@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Home extends AppCompatActivity {
 
@@ -114,6 +115,7 @@ public class Home extends AppCompatActivity {
     private void setListView(ArrayList<NotificationDetails> arrayList) {
         pb.setVisibility(ProgressBar.INVISIBLE);
         ListView carsListView = findViewById(R.id.list_view);
+        Collections.reverse(arrayList);
         NotificationAdapter adapter = new NotificationAdapter(this,arrayList);
         carsListView.setAdapter(adapter);
         carsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
