@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "52030653826",
-    "firebase_url": "https://myflat-2d8fa-default-rtdb.firebaseio.com",
-    "project_id": "myflat-2d8fa",
-    "storage_bucket": "myflat-2d8fa.appspot.com"
+    "project_number": "459251275286",
+    "firebase_url": "https://dac-aves-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "dac-aves",
+    "storage_bucket": "dac-aves.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:52030653826:android:17f6571af409b32173fb9b",
+        "mobilesdk_app_id": "1:459251275286:android:51a4aa9661897649f2c737",
         "android_client_info": {
           "package_name": "com.techbros.myflat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "52030653826-pgomctdi2s5udsk1uf3j6o6a3i0ds896.apps.googleusercontent.com",
+          "client_id": "459251275286-siqterbqk7l0cfj7vrfj2b0iq48urjga.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJOQy8tQDgFedSr8Pa21JMUtNZsEPBsHE"
+          "current_key": "AIzaSyA6WsbR15rp9Jhzkh2NCP-TPZP3IBs0Ak4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "52030653826-pgomctdi2s5udsk1uf3j6o6a3i0ds896.apps.googleusercontent.com",
+              "client_id": "459251275286-siqterbqk7l0cfj7vrfj2b0iq48urjga.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

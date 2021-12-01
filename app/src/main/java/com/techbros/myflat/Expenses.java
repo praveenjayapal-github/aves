@@ -2,6 +2,8 @@ package com.techbros.myflat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -36,9 +38,14 @@ public class Expenses extends AppCompatActivity {
     HashSet<String> monthset = new HashSet<>();
     ArrayList<ExpenseDetails> arrayList = new ArrayList<>();
     ArrayList<ExpenseDetails> temp = new ArrayList<>();
-    private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Expenses&start=1&end=1000";
+    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Expenses&start=1&end=1000";
     Spinner spin;
     ProgressBar pb;
+
+    SharedPreferences sharedpreferences;
+    public static final String SHARED_PREFS = "shared_prefs";
+    private String link;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +57,14 @@ public class Expenses extends AppCompatActivity {
         view = findViewById(R.id.btn_view);
         mRequestQueue = Volley.newRequestQueue(this);
         spin = findViewById(R.id.spinner);
+
+        // initializing our shared preferences.
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        link = sharedpreferences.getString("SheetLink", null);
+
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link+"Expenses&start=1&end=1000", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
@@ -75,6 +88,7 @@ public class Expenses extends AppCompatActivity {
                     }
                     ArrayList<String> monthset1 = new ArrayList<>(monthset);
                     Collections.sort(monthset1);
+                    Collections.reverse(monthset1);
                     monthset1.toArray();
 
                     // Create the instance of ArrayAdapter
@@ -111,7 +125,7 @@ public class Expenses extends AppCompatActivity {
                 String value = spin.getSelectedItem().toString();
                 //Toast.makeText(getApplicationContext(),value, Toast.LENGTH_LONG).show();
                 temp.clear();
-                for(int i=0;i<64;i++){
+                for(int i=0;i<arrayList.size();i++){
                     if(arrayList.get(i).getMonth().equalsIgnoreCase(value)){
                         System.out.println(arrayList.get(i).getMonth().equalsIgnoreCase(value));
                     temp.add(arrayList.get(i));

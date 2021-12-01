@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "459251275286",
+    "firebase_url": "https://dac-aves-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "dac-aves",
     "storage_bucket": "dac-aves.appspot.com"
   },

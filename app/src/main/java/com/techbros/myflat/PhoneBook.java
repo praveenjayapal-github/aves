@@ -2,6 +2,8 @@ package com.techbros.myflat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,8 +33,10 @@ public class PhoneBook extends AppCompatActivity {
     private StringRequest mStringRequest;
     private ArrayList<PhoneBookDetails> arrayList = new ArrayList<>();
     private ArrayList<PhoneBookDetails> temp = new ArrayList<>();
-    private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=contact&start=1&end=100";
-
+    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=contact&start=1&end=100";
+    SharedPreferences sharedpreferences;
+    public static final String SHARED_PREFS = "shared_prefs";
+    private String link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +55,12 @@ public class PhoneBook extends AppCompatActivity {
 
         mRequestQueue = Volley.newRequestQueue(this);
 
+        // initializing our shared preferences.
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        link = sharedpreferences.getString("SheetLink", null);
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link+"contact&start=1&end=100", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {

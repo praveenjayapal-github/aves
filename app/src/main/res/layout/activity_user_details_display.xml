@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserDetailsDisplay"
-    android:background="@drawable/main_page_bg_lite"
+    android:background="@drawable/final_bg"
     android:alpha="0.9">
 
     <androidx.appcompat.widget.Toolbar

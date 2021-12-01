@@ -1,13 +1,15 @@
 package com.techbros.myflat;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -22,6 +24,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,13 +39,19 @@ import java.util.Collections;
 
 public class Home extends AppCompatActivity {
 
+
     ProgressBar pb;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ArrayList<NotificationDetails> arrayList = new ArrayList<>();
-    private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Notifications&start=1&end=10";
+    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Notifications&start=1&end=10";
     AlertDialog.Builder builder;
     private ImageButton btnProfiles, btnExpenses, btnPhoneBook;
+    private String availability;
+    SharedPreferences sharedpreferences;
+    public static final String SHARED_PREFS = "shared_prefs";
+    private String link;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +59,34 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         pb = findViewById(R.id.progressBar);
         pb.setVisibility(ProgressBar.VISIBLE);
+
+        // initializing our shared preferences.
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        link = sharedpreferences.getString("SheetLink", null);
+        //Toast.makeText(getApplicationContext(),link, Toast.LENGTH_LONG).show();
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
+
+//        FirebaseDatabase database = FirebaseDatabase.getInstance("https://dac-aves-default-rtdb.asia-southeast1.firebasedatabase.app/");
+//        DatabaseReference reference;
+//        reference = database.getReference("SheetsLink");
+//        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    availability = dataSnapshot.getValue().toString();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
 
         builder = new AlertDialog.Builder(this);
         btnPhoneBook = findViewById(R.id.btn_contacts);
@@ -76,8 +115,7 @@ public class Home extends AppCompatActivity {
         });
         mRequestQueue = Volley.newRequestQueue(this);
 
-        //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link+"Notifications&start=1&end=10", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
@@ -114,6 +152,7 @@ public class Home extends AppCompatActivity {
 
     private void setListView(ArrayList<NotificationDetails> arrayList) {
         pb.setVisibility(ProgressBar.INVISIBLE);
+        //Toast.makeText(getApplicationContext(),availability, Toast.LENGTH_LONG).show();
         ListView carsListView = findViewById(R.id.list_view);
         Collections.reverse(arrayList);
         NotificationAdapter adapter = new NotificationAdapter(this,arrayList);
