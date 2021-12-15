@@ -1,32 +1,23 @@
 package com.techbros.myflat;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -35,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class profiles extends AppCompatActivity {
 
@@ -44,7 +34,7 @@ public class profiles extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ArrayList<UserDetails> arrayList = new ArrayList<>();
-    private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=list&start=1&end=100";
+    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=list&start=1&end=100";
     SharedPreferences sharedpreferences;
     public static final String SHARED_PREFS = "shared_prefs";
     private String link;
@@ -66,7 +56,7 @@ public class profiles extends AppCompatActivity {
         link = sharedpreferences.getString("SheetLink", null);
 
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, link+"list&start=1&end=100", new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link+"Owners_List&start=1&end=1000", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
@@ -83,7 +73,8 @@ public class profiles extends AppCompatActivity {
                         String phone = users.getString("phone");
                         String occupied = users.getString("occupied");
                         String tenantName = users.getString("tenant_name");
-                        UserDetails userDetails = new UserDetails(index,block,flatNumber,name,phone,occupied,tenantName);
+                        String tenantPhone = users.getString("tenant_phone");
+                        UserDetails userDetails = new UserDetails(index,block,flatNumber,name,phone,occupied,tenantName,tenantPhone);
                         arrayList.add(userDetails);
                     }
                     //System.out.println("print arraylist :: "+arrayList);
@@ -95,7 +86,7 @@ public class profiles extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"Error :" + error.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(getApplicationContext(),R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
 
             }
         });
@@ -124,6 +115,9 @@ public class profiles extends AppCompatActivity {
                 i.putExtra("phone", arrayList.get(position).getPhone());
                 i.putExtra("occupied", arrayList.get(position).getOccupied());
                 i.putExtra("tenantName", arrayList.get(position).getTenantName());
+                i.putExtra("tenantPhone", arrayList.get(position).getTenantPhone());
+
+
                 startActivity(i);
             }
         });
@@ -132,10 +126,10 @@ public class profiles extends AppCompatActivity {
 }
 class UserDetails {
 
-    String index,block,flatNumber,name,phone,occupied,tenantName;
+    String index,block,flatNumber,name,phone,occupied,tenantName,tenantPhone;
 
 
-    public UserDetails(String index, String block, String flatNumber, String name, String phone, String occupied, String tenantName) {
+    public UserDetails(String index, String block, String flatNumber, String name, String phone, String occupied, String tenantName, String tenantPhone) {
         this.index = index;
         this.block = block;
         this.flatNumber = flatNumber;
@@ -143,6 +137,7 @@ class UserDetails {
         this.phone = phone;
         this.occupied = occupied;
         this.tenantName = tenantName;
+        this.tenantPhone = tenantPhone;
     }
 
     public String getIndex() {
@@ -201,4 +196,11 @@ class UserDetails {
         this.tenantName = tenantName;
     }
 
+    public String getTenantPhone() {
+        return tenantPhone;
+    }
+
+    public void setTenantPhone(String tenantPhone) {
+        this.tenantPhone = tenantPhone;
+    }
 }

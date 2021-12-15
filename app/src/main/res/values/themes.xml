@@ -14,4 +14,10 @@
             tools:targetApi="l">#f2e2cd</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.MyFlat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MyFlat.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MyFlat.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

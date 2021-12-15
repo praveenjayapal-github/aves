@@ -1,7 +1,5 @@
 package com.techbros.myflat;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -60,7 +60,7 @@ public class PhoneBook extends AppCompatActivity {
 
         link = sharedpreferences.getString("SheetLink", null);
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, link+"contact&start=1&end=100", new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link+"Contact&start=1&end=10000", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -86,7 +86,7 @@ public class PhoneBook extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"Error :" + error.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(getApplicationContext(),R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
 
             }
         });

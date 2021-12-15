@@ -1,10 +1,6 @@
 package com.techbros.myflat;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,17 +14,15 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,8 +58,7 @@ public class Home extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         link = sharedpreferences.getString("SheetLink", null);
-        //Toast.makeText(getApplicationContext(),link, Toast.LENGTH_LONG).show();
-
+        //Toast.makeText(getApplicationContext(),link,Toast.LENGTH_LONG).show();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
@@ -141,7 +134,7 @@ public class Home extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error :" + error.toString()+"SMS err", Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(getApplicationContext(),R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
 
             }
         });
