@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_twotone_person_24.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23435897435897435" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -25,9 +25,6 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_first.xml" />
-  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
