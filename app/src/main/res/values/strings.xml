@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AVES</string>
+    <string name="err_msg">Please check your internet connection</string>
+    <!--    Notifications&start=1&end=10-->
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_twotone_person_24.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23435897435897435" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_phone_book.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_profiles.xml" value="0.22709163346613545" />
+        <entry key="app/src/main/res/layout/activity_push_notification.xml" value="0.171875" />
+        <entry key="app/src/main/res/layout/activity_security_check.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.23435897435897435" />
+        <entry key="app/src/main/res/layout/activity_user_details_display.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/bg_layout.xml" value="0.36484375" />
+        <entry key="app/src/main/res/layout/content_security_check.xml" value="0.24114583333333334" />
+        <entry key="app/src/main/res/layout/expenses_list_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/notification_list_item.xml" value="0.182421875" />
+        <entry key="app/src/main/res/layout/phonebook_item.xml" value="0.25" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.104296875" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_first.xml" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
