@@ -1,6 +1,5 @@
 package com.techbros.myflat;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,26 +28,26 @@ import java.util.ArrayList;
 
 public class profiles extends AppCompatActivity {
 
-    //ListView lv;
     ProgressBar pb;
+    SharedPreferences sharedpreferences;
+
+    public static final String SHARED_PREFS = "shared_prefs";
+
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ArrayList<UserDetails> arrayList = new ArrayList<>();
-    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=list&start=1&end=100";
-    SharedPreferences sharedpreferences;
-    public static final String SHARED_PREFS = "shared_prefs";
     private String link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
+
         pb = findViewById(R.id.progressBar);
         pb.setVisibility(ProgressBar.VISIBLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         mRequestQueue = Volley.newRequestQueue(this);
-
 
         // initializing our shared preferences.
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -56,15 +55,13 @@ public class profiles extends AppCompatActivity {
         link = sharedpreferences.getString("SheetLink", null);
 
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, link+"Owners_List&start=1&end=1000", new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link + "Owners_List&start=1&end=1000", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
-                //tv.setText(response.toString());
                 try {
                     int indexList = 1;
                     JSONArray list = new JSONArray(response.toString());
-                    for (int i=0; i<list.length()-1; i++) {
+                    for (int i = 0; i < list.length() - 1; i++) {
                         JSONObject users = null;
                         users = list.getJSONObject(i);
 
@@ -75,13 +72,13 @@ public class profiles extends AppCompatActivity {
                             indexList = Integer.parseInt(index);
                             continue;
                         }
-                        String block = list.getJSONObject(indexList-1).getString("Flat No.");
+                        String block = list.getJSONObject(indexList - 1).getString("Flat No.");
                         String name = users.getString("Name");
                         String phone = users.getString("Phone");
                         String occupied = users.getString("Occupied By Owners/Tenant");
                         String tenantName = users.getString("Tenant Name");
                         String tenantPhone = users.getString("Tenant Name");
-                        UserDetails userDetails = new UserDetails(index,block,flatNumber,name,phone,occupied,tenantName,tenantPhone);
+                        UserDetails userDetails = new UserDetails(index, block, flatNumber, name, phone, occupied, tenantName, tenantPhone);
                         arrayList.add(userDetails);
                     }
                     //System.out.println("print arraylist :: "+arrayList);
@@ -93,28 +90,28 @@ public class profiles extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
-
+                Toast.makeText(getApplicationContext(), R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
             }
         });
 
         mRequestQueue.add(mStringRequest);
-        //ArrayList<UserDetails> carsDetails = UsersSheet.extractUsersDetails();
-
 
     }
 
     private void setListView(ArrayList<UserDetails> arrayList) {
+
         pb.setVisibility(ProgressBar.INVISIBLE);
+
         ListView carsListView = findViewById(R.id.list_view);
         UserAdapter adapter = new UserAdapter(this, this.arrayList);
+
         carsListView.setAdapter(adapter);
         carsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 //Toast.makeText(getApplicationContext(),"Item"+arrayList.get(position).getBlock(), Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(getApplicationContext(),UserDetailsDisplay.class);
+                Intent i = new Intent(getApplicationContext(), UserDetailsDisplay.class);
                 i.putExtra("index", arrayList.get(position).getIndex());
                 i.putExtra("block", arrayList.get(position).getBlock());
                 i.putExtra("flatNumber", arrayList.get(position).getFlatNumber());
@@ -124,16 +121,15 @@ public class profiles extends AppCompatActivity {
                 i.putExtra("tenantName", arrayList.get(position).getTenantName());
                 i.putExtra("tenantPhone", arrayList.get(position).getTenantPhone());
 
-
                 startActivity(i);
             }
         });
     }
-
 }
+
 class UserDetails {
 
-    String index,block,flatNumber,name,phone,occupied,tenantName,tenantPhone;
+    String index, block, flatNumber, name, phone, occupied, tenantName, tenantPhone;
 
 
     public UserDetails(String index, String block, String flatNumber, String name, String phone, String occupied, String tenantName, String tenantPhone) {

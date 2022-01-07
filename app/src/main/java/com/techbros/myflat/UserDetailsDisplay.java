@@ -12,8 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class UserDetailsDisplay extends AppCompatActivity {
 
-    TextView block_t,flatNumber_t,name_t,phone_t,occupied_t,tenantName_t,tenantPhone_t;
-    ImageButton ib1,ib2;
+    TextView block_t, flatNumber_t, name_t, phone_t, occupied_t, tenantName_t, tenantPhone_t;
+    ImageButton ib1, ib2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class UserDetailsDisplay extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
+
         Intent intent = getIntent();
         String index = intent.getStringExtra("index");
         String block = intent.getStringExtra("block");
@@ -30,6 +32,7 @@ public class UserDetailsDisplay extends AppCompatActivity {
         String occupied = intent.getStringExtra("occupied");
         String tenantName = intent.getStringExtra("tenantName");
         String tenantPhone = intent.getStringExtra("tenantPhone");
+
         block_t = findViewById(R.id.blockName);
         flatNumber_t = findViewById(R.id.flatNumber);
         name_t = findViewById(R.id.name);
@@ -49,14 +52,14 @@ public class UserDetailsDisplay extends AppCompatActivity {
         tenantName_t.setText(tenantName);
         tenantPhone_t.setText(tenantPhone);
 
-        if(tenantPhone.equals(""))
+        if (tenantPhone.equals(""))
             ib2.setEnabled(false);
 
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" +phone_t.getText().toString()));
+                callIntent.setData(Uri.parse("tel:" + phone_t.getText().toString()));
                 startActivity(callIntent);
             }
         });
@@ -64,7 +67,7 @@ public class UserDetailsDisplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" +tenantPhone_t.getText().toString()));
+                callIntent.setData(Uri.parse("tel:" + tenantPhone_t.getText().toString()));
                 startActivity(callIntent);
             }
         });

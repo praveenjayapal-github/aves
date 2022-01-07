@@ -12,14 +12,12 @@ import java.util.ArrayList;
 
 public class NotificationAdapter extends ArrayAdapter<NotificationDetails> {
 
-
-    public NotificationAdapter(Activity context, ArrayList<NotificationDetails> notificationDetails){
+    public NotificationAdapter(Activity context, ArrayList<NotificationDetails> notificationDetails) {
         super(context, 0, notificationDetails);
     }
 
-
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         View listItemView = convertView;
         if (listItemView == null) {
@@ -29,24 +27,11 @@ public class NotificationAdapter extends ArrayAdapter<NotificationDetails> {
         }
 
         NotificationDetails notificationDetails = getItem(position);
-
-//        TextView ratingTextView = (TextView) listItemView.findViewById(R.id.textView);
-//        ratingTextView.setText(userDetails.getBlock());
-//
         TextView productTextView = (TextView) listItemView.findViewById(R.id.textView2);
         productTextView.setText(notificationDetails.getNotification());
 
         TextView tv = (TextView) listItemView.findViewById(R.id.textView22);
-        tv.setText("PostedBy: "+notificationDetails.getPostedBy());
-//        ImageView iv = listItemView.findViewById(R.id.imageView);
-//        if(userDetails.getBlock().equalsIgnoreCase("olive"))
-//            iv.setImageResource(R.drawable.olive_logo);
-//
-//        else if(userDetails.getBlock().equalsIgnoreCase("maple"))
-//            iv.setImageResource(R.drawable.maple_logo);
-//
-//        else
-//            iv.setImageResource(R.drawable.banyan_logo);
+        tv.setText("PostedBy: " + notificationDetails.getPostedBy());
 
         return listItemView;
     }

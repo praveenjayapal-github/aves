@@ -37,19 +37,17 @@ import java.util.Collections;
 
 public class Home extends AppCompatActivity {
 
-
+    public static final String SHARED_PREFS = "shared_prefs";
     ProgressBar pb;
+    AlertDialog.Builder builder;
+    SharedPreferences sharedpreferences;
+
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ArrayList<NotificationDetails> arrayList = new ArrayList<>();
-    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=Notifications&start=1&end=10";
-    AlertDialog.Builder builder;
     private ImageButton btnProfiles, btnExpenses, btnPhoneBook;
     private String availability;
-    SharedPreferences sharedpreferences;
-    public static final String SHARED_PREFS = "shared_prefs";
     private String link;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,33 +60,15 @@ public class Home extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         link = sharedpreferences.getString("SheetLink", null);
-        //Toast.makeText(getApplicationContext(),link,Toast.LENGTH_LONG).show();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance("https://dac-aves-default-rtdb.asia-southeast1.firebasedatabase.app/");
-//        DatabaseReference reference;
-//        reference = database.getReference("SheetsLink");
-//        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if(dataSnapshot.exists()){
-//                    availability = dataSnapshot.getValue().toString();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-
         builder = new AlertDialog.Builder(this);
+
         btnPhoneBook = findViewById(R.id.btn_contacts);
         btnProfiles = findViewById(R.id.btn_profiles);
         btnExpenses = findViewById(R.id.btn_expenses);
+
         btnProfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,11 +92,9 @@ public class Home extends AppCompatActivity {
         });
         mRequestQueue = Volley.newRequestQueue(this);
 
-        mStringRequest = new StringRequest(Request.Method.GET, link+"Notifications&start=1&end=10", new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link + "Notifications&start=1&end=10", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
-                //tv.setText(response.toString());
                 try {
                     JSONArray list = new JSONArray(response.toString());
                     for (int i = 0; i < list.length() - 1; i++) {
@@ -129,7 +107,7 @@ public class Home extends AppCompatActivity {
                         NotificationDetails notificationDetails = new NotificationDetails(index, notification, dateTime, postedBy);
                         arrayList.add(notificationDetails);
                     }
-                    System.out.println("print arraylist :: "+arrayList);
+                    System.out.println("print arraylist :: " + arrayList);
                     setListView(arrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -138,14 +116,11 @@ public class Home extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(getApplicationContext(), R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
 
             }
         });
-
         mRequestQueue.add(mStringRequest);
-
-
         FirebaseMessaging.getInstance().subscribeToTopic("weather")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -153,53 +128,41 @@ public class Home extends AppCompatActivity {
                         String msg = "Done";
                     }
                 });
-
-
     }
 
     private void setListView(ArrayList<NotificationDetails> arrayList) {
         pb.setVisibility(ProgressBar.INVISIBLE);
-        //Toast.makeText(getApplicationContext(),availability, Toast.LENGTH_LONG).show();
+
         ListView carsListView = findViewById(R.id.list_view);
         Collections.reverse(arrayList);
-        NotificationAdapter adapter = new NotificationAdapter(this,arrayList);
+        NotificationAdapter adapter = new NotificationAdapter(this, arrayList);
+
         carsListView.setAdapter(adapter);
         carsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                //Toast.makeText(getApplicationContext(),"Item"+arrayList.get(position).getBlock(), Toast.LENGTH_SHORT).show();
-//                Intent i = new Intent(getApplicationContext(), UserDetailsDisplay.class);
-//                i.putExtra("index", arrayList.get(position).getIndex());
-//                i.putExtra("block", arrayList.get(position).getBlock());
-//                i.putExtra("flatNumber", arrayList.get(position).getFlatNumber());
-//                i.putExtra("name", arrayList.get(position).getName());
-//                i.putExtra("phone", arrayList.get(position).getPhone());
-//                i.putExtra("occupied", arrayList.get(position).getOccupied());
-//                i.putExtra("tenantName", arrayList.get(position).getTenantName());
-//                startActivity(i);
-            builder.setMessage(arrayList.get(position).getNotification())
-                .setCancelable(false)
-                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'NO' Button
-                        dialog.cancel();
-                    }
-                });
-        //Creating dialog box
-        AlertDialog alert = builder.create();
-        //Setting the title manually
-        alert.setTitle("Notification");
-        alert.show();
+                builder.setMessage(arrayList.get(position).getNotification())
+                        .setCancelable(false)
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //  Action for 'NO' Button
+                                dialog.cancel();
+                            }
+                        });
+                //Creating dialog box
+                AlertDialog alert = builder.create();
+                //Setting the title manually
+                alert.setTitle("Notification");
+                alert.show();
             }
         });
     }
 }
 
+class NotificationDetails {
 
-class NotificationDetails{
-
-       String index,notification,dateTime,postedBy;
+    String index, notification, dateTime, postedBy;
 
     public NotificationDetails(String index, String notification, String dateTime, String postedBy) {
         this.index = index;

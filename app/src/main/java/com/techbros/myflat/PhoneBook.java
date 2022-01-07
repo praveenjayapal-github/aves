@@ -31,19 +31,23 @@ import java.util.ArrayList;
 public class PhoneBook extends AppCompatActivity {
 
     ProgressBar pb;
-    ImageButton wc,wm,el,dac,pl,all;
+    ImageButton wc, wm, el, dac, pl, all;
+
+    public static final String SHARED_PREFS = "shared_prefs";
+
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ArrayList<PhoneBookDetails> arrayList = new ArrayList<>();
     private ArrayList<PhoneBookDetails> temp = new ArrayList<>();
-    //private String url = "https://script.google.com/macros/s/AKfycbxMEYfs4ZgNliWS-tIPDqvyd2Zs6l8BRzrOn4u11aBwGeN91kT0eKt8ksXXWcTf7Xgr/exec?sheet=contact&start=1&end=100";
-    SharedPreferences sharedpreferences;
-    public static final String SHARED_PREFS = "shared_prefs";
     private String link;
+
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_book);
+
         pb = findViewById(R.id.progressBar);
         pb.setVisibility(ProgressBar.VISIBLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -62,24 +66,25 @@ public class PhoneBook extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         link = sharedpreferences.getString("SheetLink", null);
+
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, link+"Contact&start=1&end=10000", new Response.Listener<String>() {
+        mStringRequest = new StringRequest(Request.Method.GET, link + "Contact&start=1&end=10000", new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray list = new JSONArray(response.toString());
-                    for (int i=0; i<list.length()-1; i++) {
+                    for (int i = 0; i < list.length() - 1; i++) {
                         JSONObject users = null;
                         users = list.getJSONObject(i);
                         String index = users.getString("index");
                         String name = users.getString("name");
                         String contact = users.getString("contact");
                         String service = users.getString("service");
-                        PhoneBookDetails phoneBookDetails = new PhoneBookDetails(index,name,contact,service);
+                        PhoneBookDetails phoneBookDetails = new PhoneBookDetails(index, name, contact, service);
                         arrayList.add(phoneBookDetails);
                     }
-                    //System.out.println("print arraylist :: "+arrayList);
+
                     sort(arrayList);
                     setListView(arrayList);
                 } catch (JSONException e) {
@@ -87,11 +92,10 @@ public class PhoneBook extends AppCompatActivity {
                 }
             }
 
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(getApplicationContext(), R.string.err_msg, Toast.LENGTH_LONG).show();//display the response on screen
 
             }
         });
@@ -102,8 +106,8 @@ public class PhoneBook extends AppCompatActivity {
             public void onClick(View v) {
                 String value = "Drinking Water";
                 temp.clear();
-                for(int i=0;i<arrayList.size();i++){
-                    if(arrayList.get(i).getService().equalsIgnoreCase(value)){
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i).getService().equalsIgnoreCase(value)) {
                         temp.add(arrayList.get(i));
                     }
                 }
@@ -115,8 +119,8 @@ public class PhoneBook extends AppCompatActivity {
             public void onClick(View v) {
                 String value = "Watchman";
                 temp.clear();
-                for(int i=0;i<arrayList.size();i++){
-                    if(arrayList.get(i).getService().equalsIgnoreCase(value)){
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i).getService().equalsIgnoreCase(value)) {
                         temp.add(arrayList.get(i));
                     }
                 }
@@ -128,8 +132,8 @@ public class PhoneBook extends AppCompatActivity {
             public void onClick(View v) {
                 String value = "Electrician";
                 temp.clear();
-                for(int i=0;i<arrayList.size();i++){
-                    if(arrayList.get(i).getService().equalsIgnoreCase(value)){
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i).getService().equalsIgnoreCase(value)) {
                         temp.add(arrayList.get(i));
                     }
                 }
@@ -141,8 +145,8 @@ public class PhoneBook extends AppCompatActivity {
             public void onClick(View v) {
                 String value = "DAC";
                 temp.clear();
-                for(int i=0;i<arrayList.size();i++){
-                    if(arrayList.get(i).getService().equalsIgnoreCase(value)){
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i).getService().equalsIgnoreCase(value)) {
                         temp.add(arrayList.get(i));
                     }
                 }
@@ -154,8 +158,8 @@ public class PhoneBook extends AppCompatActivity {
             public void onClick(View v) {
                 String value = "plumber";
                 temp.clear();
-                for(int i=0;i<arrayList.size();i++){
-                    if(arrayList.get(i).getService().equalsIgnoreCase(value)){
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i).getService().equalsIgnoreCase(value)) {
                         temp.add(arrayList.get(i));
                     }
                 }
@@ -185,8 +189,10 @@ public class PhoneBook extends AppCompatActivity {
         carsListView.setAdapter(adapter);
     }
 }
-class PhoneBookDetails{
-    String index,name,contact,service;
+
+class PhoneBookDetails {
+
+    String index, name, contact, service;
 
     public PhoneBookDetails(String index, String name, String contact, String service) {
         this.index = index;
@@ -227,7 +233,7 @@ class PhoneBookDetails{
         this.service = service;
     }
 
-    public String getPhoneBookDetails(){
-        return this.name + this.contact + this.service ;
+    public String getPhoneBookDetails() {
+        return this.name + this.contact + this.service;
     }
 }

@@ -19,7 +19,6 @@ public class PhoneAdapter extends ArrayAdapter<PhoneBookDetails> {
         super(context, 0, phoneBookDetails);
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
@@ -38,6 +37,7 @@ public class PhoneAdapter extends ArrayAdapter<PhoneBookDetails> {
         name.setText(phoneBookDetails.getName());
         service.setText(phoneBookDetails.getService());
         contact.setText(phoneBookDetails.getContact());
+
         ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
