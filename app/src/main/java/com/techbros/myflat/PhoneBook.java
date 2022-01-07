@@ -1,7 +1,9 @@
 package com.techbros.myflat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,6 +12,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -61,6 +64,7 @@ public class PhoneBook extends AppCompatActivity {
         link = sharedpreferences.getString("SheetLink", null);
         //String Request initialized
         mStringRequest = new StringRequest(Request.Method.GET, link+"Contact&start=1&end=10000", new Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(String response) {
                 try {
@@ -76,6 +80,7 @@ public class PhoneBook extends AppCompatActivity {
                         arrayList.add(phoneBookDetails);
                     }
                     //System.out.println("print arraylist :: "+arrayList);
+                    sort(arrayList);
                     setListView(arrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -165,6 +170,13 @@ public class PhoneBook extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("NewApi")
+    public static void sort(ArrayList<PhoneBookDetails> list) {
+        list.sort((o1, o2)
+                -> o1.getPhoneBookDetails().compareTo(
+                o2.getPhoneBookDetails()));
+    }
+
     private void setListView(ArrayList<PhoneBookDetails> arrayList) {
         pb.setVisibility(ProgressBar.INVISIBLE);
 
@@ -213,5 +225,9 @@ class PhoneBookDetails{
 
     public void setService(String service) {
         this.service = service;
+    }
+
+    public String getPhoneBookDetails(){
+        return this.name + this.contact + this.service ;
     }
 }

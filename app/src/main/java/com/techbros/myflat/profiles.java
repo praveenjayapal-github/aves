@@ -62,18 +62,25 @@ public class profiles extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
                 //tv.setText(response.toString());
                 try {
+                    int indexList = 1;
                     JSONArray list = new JSONArray(response.toString());
                     for (int i=0; i<list.length()-1; i++) {
                         JSONObject users = null;
                         users = list.getJSONObject(i);
+
                         String index = users.getString("index");
-                        String block = users.getString("block");
-                        String flatNumber = users.getString("flat_number");
-                        String name = users.getString("name");
-                        String phone = users.getString("phone");
-                        String occupied = users.getString("occupied");
-                        String tenantName = users.getString("tenant_name");
-                        String tenantPhone = users.getString("tenant_phone");
+                        String flatNumber = users.getString("Flat No.");
+                        String TotalFlats = users.getString("Total Flats");
+                        if (!TotalFlats.equalsIgnoreCase("")) {
+                            indexList = Integer.parseInt(index);
+                            continue;
+                        }
+                        String block = list.getJSONObject(indexList-1).getString("Flat No.");
+                        String name = users.getString("Name");
+                        String phone = users.getString("Phone");
+                        String occupied = users.getString("Occupied By Owners/Tenant");
+                        String tenantName = users.getString("Tenant Name");
+                        String tenantPhone = users.getString("Tenant Name");
                         UserDetails userDetails = new UserDetails(index,block,flatNumber,name,phone,occupied,tenantName,tenantPhone);
                         arrayList.add(userDetails);
                     }
